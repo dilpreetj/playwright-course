@@ -8,7 +8,7 @@ test.describe('Home', () => {
     homePage = new HomePage(page);
 
     // open url
-    await page.goto('https://practice.automationbro.com/');
+    await homePage.navigate()
 
     // verify title
     await expect(page).toHaveTitle('E-Commerce Site – Automation Bro');
@@ -26,7 +26,7 @@ test.describe('Home', () => {
     homePage = new HomePage(page);
 
     // open url
-    await page.goto('https://practice.automationbro.com');
+    await homePage.navigate()
     
     await expect(page).not.toHaveURL(/.*#get-started/);
 
@@ -41,7 +41,7 @@ test.describe('Home', () => {
     homePage = new HomePage(page);
     
     // open url
-    await page.goto('https://practice.automationbro.com');
+    await homePage.navigate()
 
     // find the text locator
     const headingText = await homePage.headingText
@@ -55,7 +55,7 @@ test.describe('Home', () => {
     homePage = new HomePage(page);
 
     // open url
-    await page.goto('https://practice.automationbro.com');
+    await homePage.navigate()
 
     // find the home text
     const homeText = await homePage.homeLink
@@ -68,7 +68,7 @@ test.describe('Home', () => {
     homePage = new HomePage(page);
 
     // open url
-    await page.goto('https://practice.automationbro.com');
+    await homePage.navigate()
 
     // find the search icon
     const searchIcon = await homePage.searchIcon
@@ -90,18 +90,9 @@ test.describe('Home', () => {
     ];
 
     // open url
-    await page.goto('https://practice.automationbro.com');
-
-    // find the nav links
-    const navLinks = await homePage.navLinks
-
-    // print out all the links
-    for (const el of await navLinks.elementHandles()) {
-      console.log(await el.textContent());
-    }
+    await homePage.navigate()
 
     // verify nav links text
-    // expect(await navLinks.allTextContents()).toEqual(expectedLinks);
-    expect(await navLinks.allTextContents()).toEqual(expectedLinks);
+    expect(await homePage.getNavLinksText()).toEqual(expectedLinks);
   })
 })

@@ -16,6 +16,14 @@ class HomePage {
     this.searchIcon = page.locator('//*[@id="primary-menu"]//*[@class="tg-icon tg-icon-search"]')
     this.navLinks = page.locator('#primary-menu li[id*=menu]')
   }
+
+  async navigate() {
+    await this.page.goto('https://practice.automationbro.com/');
+  }
+
+  getNavLinksText() {
+    return this.navLinks.allTextContents()
+  }
 }
 
 export default HomePage;
