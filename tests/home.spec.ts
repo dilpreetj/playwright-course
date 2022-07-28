@@ -4,17 +4,17 @@ import HomePage from '../pages/home.page';
 test.describe('Home', () => {
   let homePage: HomePage;
 
-  test('Open HomePage and verify title', async ({ page }) => {
+  test.beforeEach(async ({ page }) => {
     homePage = new HomePage(page);
-
-    // open url
     await homePage.navigate()
-
-    // verify title
-    await expect(page).toHaveTitle('E-Commerce Site – Automation Bro');
   })
 
-  test('Open About page and verify title', async ({ page }) => {
+  test('Open HomePage and verify title', async ({ page }) => {
+    // verify title
+    await expect(page).toHaveTitle('Practice E-Commerce Site – Automation Bro');
+  })
+
+  test.skip('Open About page and verify title', async ({ page }) => {
     // open url
     await page.goto('https://practice.automationbro.com/about');
 
@@ -23,11 +23,6 @@ test.describe('Home', () => {
   })
 
   test('Click get started button using CSS Selector', async ({ page }) => {
-    homePage = new HomePage(page);
-
-    // open url
-    await homePage.navigate()
-    
     await expect(page).not.toHaveURL(/.*#get-started/);
 
     // click the button
@@ -38,11 +33,6 @@ test.describe('Home', () => {
   })
 
   test('Verify heading text is visible using text selector', async ({ page }) => {
-    homePage = new HomePage(page);
-    
-    // open url
-    await homePage.navigate()
-
     // find the text locator
     const headingText = await homePage.headingText
 
@@ -52,11 +42,6 @@ test.describe('Home', () => {
   })
 
   test('Verify home link is enabled using text and css selector', async ({ page }) => {
-    homePage = new HomePage(page);
-
-    // open url
-    await homePage.navigate()
-
     // find the home text
     const homeText = await homePage.homeLink
 
@@ -65,11 +50,6 @@ test.describe('Home', () => {
   })
 
   test('Verify search icon is visible using xpath selector', async ({ page }) => {
-    homePage = new HomePage(page);
-
-    // open url
-    await homePage.navigate()
-
     // find the search icon
     const searchIcon = await homePage.searchIcon
 
@@ -78,8 +58,6 @@ test.describe('Home', () => {
   })
 
   test('Verify text of all nav links', async ({ page }) => {
-    homePage = new HomePage(page);
-
     const expectedLinks = [
       "Home",
       "About",
@@ -88,9 +66,6 @@ test.describe('Home', () => {
       "Contact",
       "My account",
     ];
-
-    // open url
-    await homePage.navigate()
 
     // verify nav links text
     expect(await homePage.getNavLinksText()).toEqual(expectedLinks);
