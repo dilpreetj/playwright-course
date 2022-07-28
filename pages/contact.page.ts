@@ -20,7 +20,7 @@ class ContactPage {
   }
 
   async navigate() {
-    await this.page.goto('https://practice.automationbro.com/contact');
+    await this.page.goto('/contact');
   }
 
   async submitForm(name: string, email: string, phone: string, message: string) {
