@@ -6,24 +6,30 @@ const path = require('path');
 test.describe('Upload File', () => {
   let cartPage: CartPage;
 
-  test('should upload a test file', async ({ page }) => {
-    cartPage = new CartPage(page);
+  const fileName = ['logotitle.png', '3mb-file.pdf']
 
-    // Open url
-    await page.goto("https://practice.automationbro.com/cart/");
+  for (const name of fileName) {
+    test(`should upload a ${name} file`, async ({ page }) => {
+      cartPage = new CartPage(page);
+  
+      // Open url
+      await page.goto("https://practice.automationbro.com/cart/");
+  
+      // provide test file path
+      const filePath = path.join(__dirname, `../data/${name}`);
+      
+      // upload test file
+      cartPage.uploadComponent().uploadFile(filePath);
+  
+      // assertion
+      await expect(cartPage.uploadComponent().successTxt)
+        .toContainText('uploaded successfully', {timeout: 10000});
+    })
+  }
 
-    // provide test file path
-    const filePath = path.join(__dirname, '../data/3mb-file.pdf');
-    
-    // upload test file
-    cartPage.uploadComponent().uploadFile(filePath);
+  
 
-    // assertion
-    await expect(cartPage.uploadComponent().successTxt)
-      .toContainText('uploaded successfully', {timeout: 10000});
-  })
-
-  test('should upload a test file on a hidden input field', async ({ page }) => {
+  test.skip('should upload a test file on a hidden input field', async ({ page }) => {
     // Open url
     await page.goto("https://practice.automationbro.com/cart/");
 
