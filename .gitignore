@@ -4,3 +4,4 @@ node_modules/
 /playwright/.cache/
 loggedInState.json
 notLoggedInState.json
+allure-*
