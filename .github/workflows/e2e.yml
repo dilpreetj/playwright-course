@@ -1,0 +1,17 @@
+name: "e2e"
+on: [push]
+jobs:
+  test-e2e:
+    name: Run E2E tests
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright
+        run: npx playwright install --with-deps
+      - name: Run your tests
+        run: npx playwright test tests/home.spec.ts
