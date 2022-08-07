@@ -15,3 +15,9 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run your tests
         run: npx playwright test tests/home.spec.ts
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: Test Results
+          path: test-results
