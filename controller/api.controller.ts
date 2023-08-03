@@ -14,6 +14,18 @@ class APIController {
     const responseBody = await response.json();
     return responseBody[0];
   }
+
+  async createUserTodo() {
+    const response = await this.fakerApi
+      .post('/users/1/todos', {
+        data: {
+          "title": "Learn Playwright",
+          "completed": "false"
+        }
+      });
+
+    return await response.json();
+  }
 }
 
 export default new APIController();
