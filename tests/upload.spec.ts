@@ -13,7 +13,7 @@ test.describe('Upload File', () => {
       cartPage = new CartPage(page);
   
       // Open url
-      await page.goto("https://practice.automationbro.com/cart/");
+      await page.goto("https://practice.sdetunicorns.com/cart/");
   
       // provide test file path
       const filePath = path.join(__dirname, `../data/${name}`);
@@ -31,7 +31,7 @@ test.describe('Upload File', () => {
 
   test.skip('should upload a test file on a hidden input field', async ({ page }) => {
     // Open url
-    await page.goto("https://practice.automationbro.com/cart/");
+    await page.goto("https://practice.sdetunicorns.com/cart/");
 
     // provide test file path
     const filePath = path.join(__dirname, '../data/logotitle.png');
